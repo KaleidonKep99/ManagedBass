@@ -714,5 +714,15 @@ namespace ManagedBass.Midi
         /// <exception cref="Errors.Unknown">Some mystery problem!</exception>
         [DllImport(DllName, EntryPoint = "BASS_MIDI_ConvertEvents")]
         public static extern int ConvertEvents(byte[] Data, int Length, [In, Out] MidiEvent[] Events, int Count, MidiEventsMode Flags);
+    
+        #region Version
+        [DllImport(DllName)]
+        static extern int BASS_MIDI_GetVersion();
+
+        /// <summary>
+        /// Retrieves the version of BASSMIDI that is loaded
+        /// </summary>
+        public static Version Version => Extensions.GetVersion(BASS_MIDI_GetVersion());
+        #endregion
     }
 }
