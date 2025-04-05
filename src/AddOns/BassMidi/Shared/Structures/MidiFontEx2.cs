@@ -24,7 +24,7 @@ namespace ManagedBass.Midi
     /// </para>
 	/// </remarks>
 	[StructLayout(LayoutKind.Sequential)]
-    public struct MidiFontEx
+    public struct MidiFontEx2
     {
         /// <summary>
         /// Soundfont handle, previously inititialized with <see cref="BassMidi.FontInit(string,FontInitFlags)" />.
