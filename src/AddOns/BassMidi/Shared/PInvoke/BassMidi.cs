@@ -18,6 +18,7 @@ namespace ManagedBass.Midi
 #endif
         
         const int BassMidiFontEx = 0x1000000;
+        const int BassMidiFontEx2 = 0x2000000;
 
         /// <summary>
         /// Chorus Mix Channel.
@@ -666,6 +667,34 @@ namespace ManagedBass.Midi
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
         /// <exception cref="Errors.Parameter">Something in the <paramref name="Fonts" /> array is invalid, check the soundfont handles.</exception>
         public static int StreamSetFonts(int Handle, MidiFontEx[] Fonts, int Count)
+        {
+            return BASS_MIDI_StreamSetFonts(Handle, Fonts, Count | BassMidiFontEx);
+        }
+
+        [DllImport(DllName)]
+        static extern int BASS_MIDI_StreamSetFonts(int handle, MidiFontEx2[] fonts, int count);
+
+        /// <summary>
+        /// Applies a soundfont configuration to a MIDI stream, or sets the default soundfont configuration.
+        /// </summary>
+        /// <param name="Handle">The MIDI stream to apply the soundfonts to... 0 = set default soundfont configuration.</param>
+        /// <param name="Fonts">An array of <see cref="MidiFontEx2" /> soundfonts to apply.</param>
+        /// <param name="Count">The number of elements in the fonts array.</param>
+        /// <returns>If successful, <see langword="true" /> is returned, else <see langword="false" /> is returned. Use <see cref="Bass.LastError" /> to get the error code.</returns>
+        /// <remarks>
+        /// Multiple soundfonts can be stacked, each providing different presets, for example.
+        /// When a preset is present in multiple soundfonts, the earlier soundfont in the array has priority.
+        /// When a soundfont matching the MIDI file is loaded, that remains loaded when calling this function, and has priority over all other soundfonts.
+        /// When a preset is not available on a non-0 bank in any soundfont, BASSMIDI will try to fall back to bank 0; first the LSB and then the MSB if still unsuccessful.
+        /// <para>
+        /// Changing the default configuration only affects subsequently created MIDI streams.
+        /// Existing streams that are using the previous default configuration will continue to use that previous configuration.
+        /// </para>
+        /// <para>On Windows, the default default configuration will be to use the Creative 4MB (CT4MGM.SF2) or 2MB (CT2MGM.SF2) soundfont when present in the Windows system directory.</para>
+        /// </remarks>
+        /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
+        /// <exception cref="Errors.Parameter">Something in the <paramref name="Fonts" /> array is invalid, check the soundfont handles.</exception>
+        public static int StreamSetFonts(int Handle, MidiFontEx2[] Fonts, int Count)
         {
             return BASS_MIDI_StreamSetFonts(Handle, Fonts, Count | BassMidiFontEx);
         }
