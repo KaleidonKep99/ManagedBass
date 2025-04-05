@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Structures\MidiEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Structures\MidiFont.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Structures\MidiFontEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Structures\MidiFontEx2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Structures\MidiFontInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Structures\MidiMarker.cs" />
   </ItemGroup>
