@@ -696,7 +696,7 @@ namespace ManagedBass.Midi
         /// <exception cref="Errors.Parameter">Something in the <paramref name="Fonts" /> array is invalid, check the soundfont handles.</exception>
         public static int StreamSetFonts(int Handle, MidiFontEx2[] Fonts, int Count)
         {
-            return BASS_MIDI_StreamSetFonts(Handle, Fonts, Count | BassMidiFontEx);
+            return BASS_MIDI_StreamSetFonts(Handle, Fonts, Count | BassMidiFontEx2);
         }
 
         /// <summary>
